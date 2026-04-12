@@ -37,3 +37,15 @@ def main():
         (6, 80),
     ]
 
+    slope, intercept = train_linear_regression(training_data)
+    study_hours = 7
+    predicted_score = predict(study_hours, slope, intercept)
+
+    print("Simple Linear Regression Model")
+    print(f"Learned slope: {slope:.2f}")
+    print(f"Learned intercept: {intercept:.2f}")
+    print(f"Predicted score for {study_hours} study hours: {predicted_score:.2f}")
+
+
+if __name__ == "__main__":
+    main()
