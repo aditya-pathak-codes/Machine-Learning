@@ -49,3 +49,12 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# from sklearn.linear_model import LinearRegression
+# import numpy as np        
+# def main():
+#     training_data = [ 
+#         (1, 52),
+#         (2, 57),      
+#         (3, 63),
