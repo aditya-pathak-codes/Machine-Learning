@@ -228,3 +228,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# matplot`lib and seaborn examples can be added similarly in another function if needed.
