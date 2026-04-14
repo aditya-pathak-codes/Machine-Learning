@@ -281,3 +281,11 @@ def matplotlib_examples():
     print("Saved practice chart to:", output_path)
 
 
+def main():
+    numpy_examples()
+    pandas_examples()
+    matplotlib_examples()
+
+
+if __name__ == "__main__":
+    main()
