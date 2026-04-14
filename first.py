@@ -1,7 +1,13 @@
 """Copy-ready NumPy and pandas practice examples."""
 
+from pathlib import Path
+
+import matplotlib
 import numpy as np
 import pandas as pd
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 
 def print_title(title):
@@ -221,13 +227,57 @@ def pandas_examples():
     print(df.corr(numeric_only=True))
 
 
-def main():
-    numpy_examples()
-    pandas_examples()
+def matplotlib_examples():
+    print_title("MATPLOTLIB OPERATIONS")
+
+    output_dir = Path(__file__).with_name("plots")
+    output_dir.mkdir(exist_ok=True)
+
+    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+    sales = np.array([12, 15, 14, 18, 22, 24])
+    expenses = np.array([8, 9, 10, 11, 13, 14])
+    study_hours = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+    scores = np.array([52, 55, 61, 65, 70, 74, 79, 84])
+    rng = np.random.default_rng(42)
+    exam_scores = rng.normal(loc=72, scale=8, size=120)
+
+    print("Creating plots and saving them in:", output_dir)
+
+    fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+    fig.suptitle("Matplotlib Practice Charts", fontsize=14)
+
+    axes[0, 0].plot(months, sales, marker="o", linewidth=2, color="teal", label="Sales")
+    axes[0, 0].plot(months, expenses, marker="s", linewidth=2, color="orange", label="Expenses")
+    axes[0, 0].set_title("Line Plot")
+    axes[0, 0].set_xlabel("Month")
+    axes[0, 0].set_ylabel("Amount")
+    axes[0, 0].legend()
+    axes[0, 0].grid(alpha=0.3)
+
+    departments = ["IT", "HR", "Finance", "Sales"]
+    employees = [12, 7, 6, 9]
+    axes[0, 1].bar(departments, employees, color=["steelblue", "salmon", "gold", "mediumseagreen"])
+    axes[0, 1].set_title("Bar Chart")
+    axes[0, 1].set_xlabel("Department")
+    axes[0, 1].set_ylabel("Employees")
+
+    axes[1, 0].hist(exam_scores, bins=10, color="slateblue", edgecolor="black", alpha=0.8)
+    axes[1, 0].set_title("Histogram")
+    axes[1, 0].set_xlabel("Score")
+    axes[1, 0].set_ylabel("Frequency")
+
+    axes[1, 1].scatter(study_hours, scores, color="crimson", s=80)
+    axes[1, 1].set_title("Scatter Plot")
+    axes[1, 1].set_xlabel("Study Hours")
+    axes[1, 1].set_ylabel("Score")
+    axes[1, 1].grid(alpha=0.3)
+
+    fig.tight_layout(rect=(0, 0, 1, 0.96))
+
+    output_path = output_dir / "matplotlib_practice.png"
+    fig.savefig(output_path, dpi=150)
+    plt.close(fig)
+
+    print("Saved practice chart to:", output_path)
 
 
-if __name__ == "__main__":
-    main()
-
-
-# matplot`lib and seaborn examples can be added similarly in another function if needed.
